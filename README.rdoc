@@ -1,0 +1,7 @@
+= Harvest Service for .Net 4
+
+.Net 4 wrapper for Harvest REST Services
+
+== Harvest 
+Time Tracking & Online Invoicing
+Harvest lets you and your staff track time and send invoices from one integrated application. Get set up in just a few minutes and instantly start tracking time and invoicing your clients. Contractor and employee timesheet and timesheet approval is included. Use Harvest's visual reports to see the distribution of your company's resources at a glance. Create an online invoice and easily bill your client. Get paid faster by collecting online payments from your clients instantly and securely via the web. Give Harvest a try today to lower your payroll costs and improve your business today.
