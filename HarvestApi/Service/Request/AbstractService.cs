@@ -80,7 +80,7 @@ namespace HarvestApi.Service.Request
             request.ContentType = "application/xml";
             request.MaximumAutomaticRedirections = 1;
             request.AllowAutoRedirect = true;
-            request.UserAgent = "DotNetHavestWebServiceProvider";
+            request.UserAgent = "HarvestServiceForDotNet4";
             request.PreAuthenticate = true;
 
             string usernameAndPassword = string.Format("{0}:{1}", _harvestConnection.Username, _harvestConnection.Password);

@@ -1,8 +1,12 @@
 = Harvest Service for .Net 4
 
-.Net 4 wrapper for Harvest REST Services
+An example .Net 4 wrapper for Harvest REST Services.
 
-== Harvest (http://www.getharvest.com/) is Time Tracking & Online Invoicing Application
+This project is intended to simplify using  the Harvest REST API in your .Net project by hiding the complexity of setting up the HTTP Web Requests and endpoints with acceptance tests.
+
+This version currently covers all Project service requests and a few client service requests, other requests can easily added.
+
+== Harvest[http://www.getharvest.com] is Time Tracking & Online Invoicing Application
 
 Harvest lets you and your staff track time and send invoices from one integrated application. Get set up in just a few minutes and instantly start tracking time and invoicing your clients. Contractor and employee timesheet and timesheet approval is included. Use Harvest's visual reports to see the distribution of your company's resources at a glance. Create an online invoice and easily bill your client. Get paid faster by collecting online payments from your clients instantly and securely via the web. Give Harvest a try today to lower your payroll costs and improve your business today.
 
@@ -10,7 +14,7 @@ Harvest lets you and your staff track time and send invoices from one integrated
 
 This solution expects the following:
 - Visual Studio 2010
-- SpecFlow (http://specflow.org/)
+- SpecFlow[http://specflow.org]
 
 == Running the tests
 
@@ -26,9 +30,9 @@ Edit HarvestApiSpec/App.Config and update the XXXX placeholders with your Harves
 
 Right Click HarvestApiSpec and select "Run Unit Tests"
 
-=== Harvest API THROTTLE LIMIT - HTTP 503 (http://www.getharvest.com/api#api-throttle-limit)
+=== Harvest API THROTTLE LIMIT - HTTP 503
 
-Please note the following is copied from the Harvest API documentation (as of 2011/09/12)
+Please note the following is copied from the Harvest API documentation[http://www.getharvest.com/api#api-throttle-limit] (as of 2011/09/12)
 
 We have an API throttle that blocks accounts emitting more than 100 calls per 15 seconds. We reserve the right to tune the limitations, but they are always set high enough to allow a well-behaving interactive program to do its job.
 
