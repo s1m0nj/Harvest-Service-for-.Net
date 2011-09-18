@@ -4,10 +4,9 @@ An example .Net 4 wrapper for Harvest API.
 
 This project is intended to simplify using the Harvest API in your .Net project by 
 * hiding the complexity of setting up the HTTP Web Requests and endpoints with acceptance tests.
-* seamlessly deal with 
+* seamlessly deal with Harvests' API throttle limit.
 
 This version currently covers all Project service requests and a few client service requests, other requests maybe added in the future but can easily added.
-If you find this useful and wish to contribute any changes back please message me.
 
 == Harvest[http://www.getharvest.com] is Time Tracking & Online Invoicing Application
 
@@ -51,8 +50,7 @@ The following IS A list the current tasks under development
 
 * Implement Estimates API
 
-
 The following is a list of future to do's
 
-* Implement more of the API
 * Mono Support
+* Implement more of the API
