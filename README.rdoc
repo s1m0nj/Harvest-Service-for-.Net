@@ -8,7 +8,7 @@ This project is intended to simplify using the Harvest API in your .Net project 
 
 This version currently covers all "Project" service requests and a few "client" service requests, other requests maybe added in the future but you can extend IHarvestService.cs and IHarvestService.cs to handle more of the API.
 
-[Simon Jackson http://www.simonjackson.info] - [Prosperity 24.7 http://www.prosperity247.com/]
+@_Simon_Jackson[http://www.simonjackson.info] http://www.prosperity247.com
 
 http://i55.tinypic.com/o9pw0p.jpg
 
