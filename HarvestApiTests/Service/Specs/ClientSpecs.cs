@@ -43,6 +43,13 @@ namespace HarvestApiTests.Service.features
                                                           "//client[id=" + SharedVariables.TestClientID + "]");
     
         }
+        [When(@"I call ""ToggleClientState\(clientID\)""")]
+        public void WhenICallToggleClientStateClientID()
+        {
+            StoreResult(SharedVariables.HarvestService.ToggleClientState(SharedVariables.TestClientID));
+        }
+
+
 
     }
 }

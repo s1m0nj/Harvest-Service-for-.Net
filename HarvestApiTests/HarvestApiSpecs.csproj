@@ -46,7 +46,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extentions\XNode.cs" />
-    <Compile Include="Service\Specs\AbstractSpec.cs" />
+    <Compile Include="Service\features\ApiThrottleLimit.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ApiThrottleLimit.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Service\Specs\BaseSpec.cs" />
+    <Compile Include="Service\Specs\ApiThrottleLimitSpecs.cs" />
     <Compile Include="Service\Specs\ClientSpecs.cs" />
     <Compile Include="Service\features\ClientSpecs1.feature.cs">
       <AutoGen>True</AutoGen>
@@ -73,6 +79,10 @@
   <ItemGroup>
     <None Include="App.config">
       <SubType>Designer</SubType>
+    </None>
+    <None Include="Service\features\ApiThrottleLimit.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ApiThrottleLimit.feature.cs</LastGenOutput>
     </None>
     <None Include="Service\features\ClientSpecs.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>

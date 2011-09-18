@@ -46,9 +46,9 @@ Scenario: Get specific project
 Scenario: Update a project
 	When I call "UpdateProject(projectID,xml)" 
 	| xml |
-	| <project><name>Delete Me - Automated Test, Updated</name><client-id>[TESTCLIENTID]</client-id></project>|
+	| <project><name>Delete Me, Automated Test, Updated</name><client-id>[TESTCLIENTID]</client-id></project>|
 	And  I call "GetProject(projectID)"
-	Then the result should contain "/project[name='Delete Me - Automated Test, Updated']"
+	Then the result should contain "/project[name='Delete Me, Automated Test, Updated']"
 
 @TestProjectRecord	
 Scenario: Toggle a projects state

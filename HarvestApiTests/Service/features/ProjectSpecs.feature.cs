@@ -177,14 +177,14 @@ this.ScenarioSetup(scenarioInfo);
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
                         "xml"});
             table2.AddRow(new string[] {
-                        "<project><name>Delete Me - Automated Test, Updated</name><client-id>[TESTCLIENTID" +
-                            "]</client-id></project>"});
+                        "<project><name>Delete Me, Automated Test, Updated</name><client-id>[TESTCLIENTID]" +
+                            "</client-id></project>"});
 #line 47
  testRunner.When("I call \"UpdateProject(projectID,xml)\"", ((string)(null)), table2);
 #line 50
  testRunner.And("I call \"GetProject(projectID)\"");
 #line 51
- testRunner.Then("the result should contain \"/project[name=\'Delete Me - Automated Test, Updated\']\"");
+ testRunner.Then("the result should contain \"/project[name=\'Delete Me, Automated Test, Updated\']\"");
 #line hidden
             testRunner.CollectScenarioErrors();
         }

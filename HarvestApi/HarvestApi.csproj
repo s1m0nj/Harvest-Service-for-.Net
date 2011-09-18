@@ -50,6 +50,7 @@
     <Compile Include="Service\Request\DeleteService.cs" />
     <Compile Include="Service\Request\GetService.cs" />
     <Compile Include="Service\Request\HttpMethod.cs" />
+    <Compile Include="Service\Request\IServiceCommand.cs" />
     <Compile Include="Service\Request\PostService.cs" />
     <Compile Include="Service\Request\PutService.cs" />
   </ItemGroup>

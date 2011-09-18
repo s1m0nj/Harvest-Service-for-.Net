@@ -4,14 +4,26 @@ using System.Net;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 using System.Text;
+using System.Threading;
 using HarvestApi.Service.Exception;
 
 namespace HarvestApi.Service.Request
 {
-    internal abstract class AbstractService 
+    internal abstract class AbstractService : IServiceCommand
+
     {
         private readonly HarvestConnection _harvestConnection;
         private readonly string _endpoint;
+        private int _retriedAfterSeconds;
+        
+        /// <summary>
+        /// Indicates the seconds the Harvest server requested that we wait in between
+        /// </summary>
+        public int HavestRequestForcedWaitForApiThrotterling
+        {
+            get { return _retriedAfterSeconds; }
+        }
+    
 
         protected AbstractService(HarvestConnection harvestConnection, string endpoint)
         {
@@ -30,8 +42,33 @@ namespace HarvestApi.Service.Request
         public string Exectue(string xmlContent="")
         {
             Content = xmlContent;
-            HttpWebResponse response = null;
+            _retriedAfterSeconds = 0;
+            return ExecuteRequestAndRetryIfServiceUnavailable();
+        }
+
+        private string ExecuteRequestAndRetryIfServiceUnavailable()
+        {
+            try
+            {
+                return ExecuteRequest();
+            }
+            catch (HavestApiException harvestEx)
+            {
+                if (harvestEx.StatusCode==HttpStatusCode.ServiceUnavailable && harvestEx.RetryAfterSeconds > 0)
+                {
+                    _retriedAfterSeconds = harvestEx.RetryAfterSeconds;
+                    Thread.Sleep(_retriedAfterSeconds * 1000);
+                    return ExecuteRequest();
+                    
+                }
+                throw;
+            }
+        }
+
+        private string ExecuteRequest()
+        {
             string endpointUri = _harvestConnection.Uri + _endpoint;
+            HttpWebResponse response = null;
             try
             {
                 //Setup request and authentication
@@ -50,16 +87,11 @@ namespace HarvestApi.Service.Request
             }
             catch (WebException wex)
             {
-                if (wex.Response != null)
+                if (wex.Response == null) 
                 {
-                    using (var errorResponse = (HttpWebResponse) wex.Response)
-                    {
-                        throw new HavestApiException(
-                            endpointUri,HttpMethod.Verb,Content,
-                            errorResponse.StatusDescription, errorResponse.StatusCode,errorResponse.StatusCode);
-                    }
+                    throw;
                 }
-                throw;
+                throw new HavestApiException(endpointUri, HttpMethod.Verb, Content,wex);
             }
             finally
             {
@@ -80,7 +112,7 @@ namespace HarvestApi.Service.Request
             request.ContentType = "application/xml";
             request.MaximumAutomaticRedirections = 1;
             request.AllowAutoRedirect = true;
-            request.UserAgent = "HarvestServiceForDotNet4";
+            request.UserAgent = "HarvestServiceForDotNet";
             request.PreAuthenticate = true;
 
             string usernameAndPassword = string.Format("{0}:{1}", _harvestConnection.Username, _harvestConnection.Password);
@@ -114,7 +146,9 @@ namespace HarvestApi.Service.Request
                 object unencodedArg = args[i];
                 object encodedArg = unencodedArg; //Default
                 if (unencodedArg is DateTime)
+                {
                     encodedArg = ((DateTime) unencodedArg).ToString("yyyy-MM-dd+HH:ss").Replace(":", "%3A");
+                }
                 encodedArgs[i] = encodedArg;
             }
             return encodedArgs;

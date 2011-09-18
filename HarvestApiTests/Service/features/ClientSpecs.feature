@@ -21,3 +21,16 @@ Scenario: Delete a client
 	When I call "DeleteClient(clientID)"
 	And I call "GetClient(clientID)"
 	Then the result should not contain "/clients"
+
+@TestClientRecord	
+Scenario: Toggle a clients state
+	When I call "ToggleClientState(clientID)"
+	And  I call "GetClient(clientID)"
+	Then the result should contain "/client[active='false']"
+
+@TestClientRecord	
+Scenario: Toggle a clients state to inactive and back again
+	When I call "ToggleClientState(clientID)"
+	And  I call "ToggleClientState(clientID)"
+	And  I call "GetClient(clientID)"
+	Then the result should contain "/client[active='true']"

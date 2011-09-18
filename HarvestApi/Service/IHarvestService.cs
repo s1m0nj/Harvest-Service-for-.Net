@@ -4,6 +4,8 @@ namespace HarvestApi.Service
 {
     public interface IHarvestService
     {
+        int HavestRequestForcedWaitForApiThrotterling { get; }
+
         string GetProjects();
         string GetProjects(int clientID);
         string GetProjects(DateTime updatedSinceUTC);
@@ -17,7 +19,7 @@ namespace HarvestApi.Service
         string GetClient(int clientID);
         string CreateClient(string xml);
         //string UpdateClient(int clientID, string xml);
-        //string ToggleClientState(int clientID);
+        string ToggleClientState(int clientID);
         string DeleteClient(int clientID);
         //string GetContacts();
         //string GetContacts(DateTime updatedSinceUTC);

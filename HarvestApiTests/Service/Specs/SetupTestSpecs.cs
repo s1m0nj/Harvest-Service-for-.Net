@@ -9,10 +9,11 @@ namespace HarvestApiTests.Service.Specs
     [Binding]
     public class SetupTestSpecs
     {
+                                                          
         internal static readonly string TestNamePrefix = "Delete Me, Automated Test,";
                                         //WARNING: This identifier is used is bulk delete, so don't name it anything like real data
 
-        public static readonly DateTime StartTimeUniqueIdentifier = DateTime.UtcNow;
+        public static DateTime StartTimeUniqueIdentifier = DateTime.UtcNow;
 
         [BeforeScenario("TestClientRecord")]
         private static XElement CreateTestClient()
@@ -56,19 +57,31 @@ namespace HarvestApiTests.Service.Specs
                 XDocument document = XDocument.Parse(clients);
 
                 IEnumerable<int> clientids = from p in document.Descendants("client")
-                                             where p.Element("name").Value.StartsWith(TestNamePrefix)
+                                             where p.Element("name").Value.StartsWith(TestNamePrefix) 
+                                                || p.Element("name").Value.StartsWith("Delete Me - Automated Test")
                                              select int.Parse(p.Element("id").Value);
+         
+                Exception lastException = null;
                 foreach (int clientid in clientids)
                 {
-                    SharedVariables.HarvestService.DeleteClient(clientid);
+                    try
+                    {
+                        SharedVariables.HarvestService.DeleteClient(clientid);
+                    }
+                    catch (Exception e)
+                    {
+                        lastException = e;
+                    }
                 }
+                SharedVariables.TestClient = null;
+                SharedVariables.TestClientID = 0;
+                if (lastException != null) throw lastException;
 
             }
             catch (Exception e)
             {
                 Console.WriteLine(e.ToString());
             }
-
         }
 
         private static XElement CreateTestProject()
@@ -84,7 +97,7 @@ namespace HarvestApiTests.Service.Specs
             XDocument document = XDocument.Parse(projects);
 
             XElement project = (from p in document.Descendants("project")
-                                where p.Element("name").Value.EndsWith(StartTimeUniqueIdentifier.ToString())
+                                where p.Element("name").Value.EndsWith(StartTimeUniqueIdentifier.ToString()) 
                                 select p).FirstOrDefault();
 
             SharedVariables.TestProject = project;
@@ -98,19 +111,36 @@ namespace HarvestApiTests.Service.Specs
             string projects = SharedVariables.HarvestService.GetProjects();
             XDocument document = XDocument.Parse(projects);
 
-            IEnumerable<int> projectids = from p in document.Descendants("project")
-                                          where p.Element("name").Value.StartsWith(TestNamePrefix)
-                                          select int.Parse(p.Element("id").Value);
+            var testProjects = (from p in document.Descendants("project")
+                           where p.Element("name").Value.StartsWith(TestNamePrefix)
+                              || p.Element("name").Value.StartsWith("Delete Me - Automated Test")        
+                           select p).ToList();
+
+            IEnumerable<int> projectids = testProjects.Select(p=>int.Parse(p.Element("id").Value));
+
+            Exception lastException = null;
             foreach (int projectid in projectids)
             {
-                SharedVariables.HarvestService.DeleteProject(projectid);
+                try
+                {
+                    SharedVariables.HarvestService.DeleteProject(projectid);
+
+                }
+                catch (Exception e)
+                {
+                    lastException = e;
+                }
             }
+            SharedVariables.TestProject = null;
+            SharedVariables.TestProjectID = 0;
+            if (lastException != null) throw lastException;
         }
 
 
         [BeforeScenario("TestProjectRecord")]
         public static void SetupTestProject()
         {
+            StartTimeUniqueIdentifier = DateTime.UtcNow;
             CreateTestProject();
         }
 

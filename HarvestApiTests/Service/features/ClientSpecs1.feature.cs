@@ -103,6 +103,46 @@ this.ScenarioSetup(scenarioInfo);
 #line hidden
             testRunner.CollectScenarioErrors();
         }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Toggle a clients state")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Client Service Requests")]
+        public virtual void ToggleAClientsState()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Toggle a clients state", new string[] {
+                        "TestClientRecord"});
+#line 26
+this.ScenarioSetup(scenarioInfo);
+#line 27
+ testRunner.When("I call \"ToggleClientState(clientID)\"");
+#line 28
+ testRunner.And("I call \"GetClient(clientID)\"");
+#line 29
+ testRunner.Then("the result should contain \"/client[active=\'false\']\"");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Toggle a clients state to inactive and back again")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Client Service Requests")]
+        public virtual void ToggleAClientsStateToInactiveAndBackAgain()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Toggle a clients state to inactive and back again", new string[] {
+                        "TestClientRecord"});
+#line 32
+this.ScenarioSetup(scenarioInfo);
+#line 33
+ testRunner.When("I call \"ToggleClientState(clientID)\"");
+#line 34
+ testRunner.And("I call \"ToggleClientState(clientID)\"");
+#line 35
+ testRunner.And("I call \"GetClient(clientID)\"");
+#line 36
+ testRunner.Then("the result should contain \"/client[active=\'true\']\"");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
     }
 }
 #endregion
