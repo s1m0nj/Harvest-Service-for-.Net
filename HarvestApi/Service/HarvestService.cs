@@ -144,58 +144,6 @@ namespace HarvestApi.Service
 
         #endregion Client
 
-        //#region Contact
-
-        //public string GetContacts()
-        //{
-        //    var request = new GetService(HarvestConnection, "contacts");
-        //    return PerformRequest(request);
-        //}
-
-        //public string GetContacts(DateTime updatedSinceUTC)
-        //{
-        //    var request = new GetService(HarvestConnection, "contacts?updated_since={0:}", updatedSinceUTC);
-        //    return PerformRequest(request);
-        //}
-
-        //public string GetContacts(int clientID)
-        //{
-        //    var request = new GetService(HarvestConnection, "contacts/{0}/contacts", clientID);
-        //    return PerformRequest(request);
-        //}
-
-        //public string GetContacts(int clientID, DateTime updatedSinceUTC)
-        //{
-        //    var request = new GetService(HarvestConnection, "contacts/{0}/contacts?updated_since={1}", clientID, updatedSinceUTC);
-        //    return PerformRequest(request);
-        //}
-
-
-        //public string GetContact(int contactID)
-        //{
-        //    var request = new GetService(HarvestConnection, "contacts/{0}", contactID);
-        //    return PerformRequest(request);
-        //}
-
-        //public string CreateContact(string xml)
-        //{
-        //    var request = new PostService(HarvestConnection, "contacts");
-        //    return PerformRequest(request,xml);
-        //}
-
-        //public string UpdateContact(int contactID, string xml)
-        //{
-        //    var request = new PutService(HarvestConnection, "contacts/{0}", contactID);
-        //    return PerformRequest(request,xml);
-        //}
-
-        //public string DeleteContact(int contactID)
-        //{
-        //    var request = new DeleteService(HarvestConnection, "contacts/{0}", contactID);
-        //    return PerformRequest(request);
-        //}
-
-        //#endregion Contact
 
     }
 

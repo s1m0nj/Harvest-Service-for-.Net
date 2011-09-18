@@ -53,7 +53,7 @@ namespace HarvestApiTests.Service.Specs
             {
                 StoreResult(SharedVariables.HarvestService.GetProject(SharedVariables.TestProjectID));
             }
-            catch (HavestApiException hai)
+            catch (HarvestApiException hai)
             {
                 if (hai.StatusCode != HttpStatusCode.NotFound) throw;
                 //Continue when NotFound so that Delete completes

@@ -1,24 +1,34 @@
 = Harvest Service for .Net 4
 
-An example .Net 4 wrapper for Harvest API.
+An .Net wrapper for Harvest API.
 
 This project is intended to simplify using the Harvest API in your .Net project by 
-* hiding the complexity of setting up the HTTP Web Requests and endpoints with acceptance tests.
+* hiding the complexity of setting up the HTTP Web Requests and endpoints.
 * seamlessly deal with Harvests' API throttle limit.
+* and having acceptance test coverage.
 
-This version currently covers all Project service requests and a few client service requests, other requests maybe added in the future but can easily added.
+This version currently covers all "Project" service requests and a few "client" service requests, other requests maybe added in the future but you can extend IHarvestService.cs and IHarvestService.cs to handle more of the API.
 
-== Harvest[http://www.getharvest.com] is Time Tracking & Online Invoicing Application
-
-Harvest lets you and your staff track time and send invoices from one integrated application. Get set up in just a few minutes and instantly start tracking time and invoicing your clients. Contractor and employee timesheet and timesheet approval is included. Use Harvest's visual reports to see the distribution of your company's resources at a glance. Create an online invoice and easily bill your client. Get paid faster by collecting online payments from your clients instantly and securely via the web. Give Harvest a try today to lower your payroll costs and improve your business today.
 
 == Source Code Prerequisites
 
-This solution expects the following:
+This solution expects the following to be installed:
 - Visual Studio 2010
 - SpecFlow[http://specflow.org]
 
+== Using the HarvestApi.dll
+
+* Compile the HarvestApi into a DLL
+* Add a reference to the DLL in your project
+* Create an instance of the service and call the API methods
+	
+	var connectionInfo = new HarvestApi.Service.HarvestConnection("https://YOUR_SUB_DOMAIN.harvestapp.com","Your@Email.com","YourPassword");
+	var service = new HarvestApi.Service.HarvestService(connectionInfo);
+	string xml = service.GetProjects();
+
 == Running the tests
+
+The acceptance tests use SpecFlow with MSTest so that they can be run within Visual Studio.  You will need to setup your credentials in the HarvestApiSpec/App.Config
 
 === Setup Harvest Credentials 
 
@@ -32,25 +42,13 @@ Edit HarvestApiSpec/App.Config and update the XXXX placeholders with your Harves
 
 In Visual Studio's Solution Explorer, Right Click HarvestApiSpec and select "Run Unit Tests"
 
-=== Harvest API THROTTLE LIMIT - HTTP 503
-
-If your application is likely to make many requests in a short period of time then you should be aware of the following API throttling, the Harvest Service for .Net will checks for 503 status code and wait the number of seconds before retrying you request again.
-
-Copied from the Harvest API documentation[http://www.getharvest.com/api#api-throttle-limit] (as of 2011/09/12):
-
-* We have an API throttle that blocks accounts emitting more than 100 calls per 15 seconds. We reserve the right to tune the limitations, but they are always set high enough to allow a well-behaving interactive program to do its job.
-
-  For batch processes and API developers who still need to perfect their code, this throttle may be an inadvertent blocker. Just wait and make no API calls (the throttle is reset with each call). The throttle will lift itself in few minutes and API calls may resume.
-
-  When the rate limit is exceeded Harvest will send an HTTP 503 status code. The number of seconds until the throttle is lifted is sent via the "Retry-After" HTTP header, as specified in RFC 2616. You can use GET /account/rate_limit_status to programmatically query your current throttle status.
-
 == Roadmap 
 
-The following IS A list the current tasks under development 
-
-* Implement Estimates API
-
-The following is a list of future to do's
+The following is a list of future tasks for this project
 
 * Mono Support
 * Implement more of the API
+
+== What is Harvest[http://www.getharvest.com]? 
+
+Harvest is Time Tracking & Online Invoicing Application.  Harvest lets you and your staff track time and send invoices from one integrated application. Get set up in just a few minutes and instantly start tracking time and invoicing your clients. Contractor and employee timesheet and timesheet approval is included. Use Harvest's visual reports to see the distribution of your company's resources at a glance. Create an online invoice and easily bill your client. Get paid faster by collecting online payments from your clients instantly and securely via the web. Give Harvest a try today to lower your payroll costs and improve your business today.

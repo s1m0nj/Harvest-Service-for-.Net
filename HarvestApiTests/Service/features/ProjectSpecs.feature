@@ -2,20 +2,20 @@
 	In order to simplify interactions with the Harvest API
 	As a developer
 	I want to be to call project service calls without knowing how to authenticate.
-	I want to be to call project service calls without knowing the endpoint urls required.
+	I want to be to call project service calls without knowing the endpoint URL's required.
 
 
-#This is a test records dependecy used in setup
+#This is a test records dependency used in setup
 Scenario: Get All Projects
 	When I call "GetProjects()"
 	Then the result should contain "/projects"
 
-#This is a test records dependecy used in setup
+#This is a test records dependency used in setup
 @TestProjectRecord 
 Scenario: Create a project
 	Then the project should contain projectID
 
-#This is a test records dependecy used in ter down
+#This is a test records dependency used in tear down
 @TestProjectRecord
 Scenario: Delete a project
 	When I call "DeleteProject(projectID)"
@@ -28,9 +28,9 @@ Scenario: Get All Projects Updated Since ID
 	When I call "GetProjects(updatedSinceUTC)" 
 	Then the result should contain "//project/name[contains(.,'Test')]"
 	And  the result should be equal
-	| Xpath								 | 
+	| Xpath								| 
 	| //project/name[contains(.,'Test')] |
-	| //project							 |
+	| //project							|
 
 @TestProjectRecord
 Scenario: Get All Projects By Client ID

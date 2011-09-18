@@ -10,6 +10,7 @@
         /// <param name="password">password</param>
         public HarvestConnection(string uri, string username, string password)
         {
+            if (!uri.EndsWith("/")) uri += "/";
             Uri = uri;
             Username = username;
             Password = password;

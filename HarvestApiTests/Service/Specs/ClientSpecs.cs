@@ -21,7 +21,7 @@ namespace HarvestApiTests.Service.features
             {
                 StoreResult(SharedVariables.HarvestService.GetClient(SharedVariables.TestClientID));
             }
-            catch (HavestApiException hai)
+            catch (HarvestApiException hai)
             {
                 if (hai.StatusCode != HttpStatusCode.NotFound) throw;
                 //Continue when NotFound so that Delete completes

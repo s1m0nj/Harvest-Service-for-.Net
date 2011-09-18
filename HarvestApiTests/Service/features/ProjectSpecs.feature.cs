@@ -32,7 +32,7 @@ namespace HarvestApiTests.Service.Features
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Project Service Requests", "In order to simplify interactions with the Harvest API\r\nAs a developer\r\nI want to" +
                     " be to call project service calls without knowing how to authenticate.\r\nI want t" +
-                    "o be to call project service calls without knowing the endpoint urls required.", GenerationTargetLanguage.CSharp, ((string[])(null)));
+                    "o be to call project service calls without knowing the endpoint URL\'s required.", GenerationTargetLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         

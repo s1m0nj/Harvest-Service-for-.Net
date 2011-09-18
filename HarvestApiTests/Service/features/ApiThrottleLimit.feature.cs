@@ -18,7 +18,7 @@ namespace HarvestApiTests.Service.Features
     [System.CodeDom.Compiler.GeneratedCodeAttribute("TechTalk.SpecFlow", "1.6.1.0")]
     [System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [Microsoft.VisualStudio.TestTools.UnitTesting.TestClassAttribute()]
-    public partial class AdditionFeature
+    public partial class HarvestAPIThrottleLimitFeature
     {
         
         private static TechTalk.SpecFlow.ITestRunner testRunner;
@@ -30,9 +30,13 @@ namespace HarvestApiTests.Service.Features
         public static void FeatureSetup(Microsoft.VisualStudio.TestTools.UnitTesting.TestContext testContext)
         {
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
-            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Addition", "In order to avoid my code form dealing with the API throttle limit\r\nAs a develope" +
-                    "r\r\nI want to make my service request and expect the service wrapper to deal with" +
-                    " the throttle", GenerationTargetLanguage.CSharp, ((string[])(null)));
+            TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Harvest API Throttle Limit", @"Copied from the Harvest API documentation[http://www.getharvest.com/api#api-throttle-limit] (as of 2011/09/12):
+We have an API throttle that blocks accounts emitting more than 100 calls per 15 seconds. We reserve the right to tune the limitations, but they are always set high enough to allow a well-behaving interactive program to do its job.
+For batch processes and API developers who still need to perfect their code, this throttle may be an inadvertent blocker. Just wait and make no API calls (the throttle is reset with each call). The throttle will lift itself in few minutes and API calls may resume.
+When the rate limit is exceeded Harvest will send an HTTP 503 status code. The number of seconds until the throttle is lifted is sent via the ""Retry-After"" HTTP header, as specified in RFC 2616. You can use GET /account/rate_limit_status to programmatically query your current throttle status.
+In order to avoid my code form dealing with the API throttle limit
+As a developer
+I want to make my service request and expect the service wrapper to deal with the throttle.", GenerationTargetLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -56,18 +60,18 @@ namespace HarvestApiTests.Service.Features
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Exceed the throttle limit")]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Addition")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Harvest API Throttle Limit")]
         public virtual void ExceedTheThrottleLimit()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Exceed the throttle limit", new string[] {
                         "TestClientRecord"});
-#line 8
+#line 12
 this.ScenarioSetup(scenarioInfo);
-#line 9
- testRunner.When("I call \"ToggleClientState(clientID)\" 122 times");
-#line 10
+#line 13
+ testRunner.When("I call \"ToggleClientState(clientID)\" 202 times");
+#line 14
  testRunner.Then("an exception should not be received");
-#line 11
+#line 15
  testRunner.And("a wait for the throttle to clear should of happened");
 #line hidden
             testRunner.CollectScenarioErrors();

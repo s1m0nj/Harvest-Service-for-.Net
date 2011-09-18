@@ -52,7 +52,7 @@ namespace HarvestApi.Service.Request
             {
                 return ExecuteRequest();
             }
-            catch (HavestApiException harvestEx)
+            catch (HarvestApiException harvestEx)
             {
                 if (harvestEx.StatusCode==HttpStatusCode.ServiceUnavailable && harvestEx.RetryAfterSeconds > 0)
                 {
@@ -91,7 +91,7 @@ namespace HarvestApi.Service.Request
                 {
                     throw;
                 }
-                throw new HavestApiException(endpointUri, HttpMethod.Verb, Content,wex);
+                throw new HarvestApiException(endpointUri, HttpMethod.Verb, Content,wex);
             }
             finally
             {

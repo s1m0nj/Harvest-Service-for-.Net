@@ -2,10 +2,10 @@
 
 namespace HarvestApi.Service.Exception
 {
-    public class HavestApiException : WebException
+    public class HarvestApiException : WebException
     {
         
-        public HavestApiException(string url, string httpMethod, string content,WebException exception)
+        public HarvestApiException(string url, string httpMethod, string content,WebException exception)
             : base(
                 string.Format(
                     "The server request failed with status '{0}'. Url:{1}\r\nMethod:{2}\r\nContent:{3}\r\nMessage:{4}",

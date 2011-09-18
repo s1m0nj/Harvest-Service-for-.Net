@@ -32,7 +32,7 @@ namespace HarvestApiTests.Service.Features
             testRunner = TechTalk.SpecFlow.TestRunnerManager.GetTestRunner();
             TechTalk.SpecFlow.FeatureInfo featureInfo = new TechTalk.SpecFlow.FeatureInfo(new System.Globalization.CultureInfo("en-US"), "Client Service Requests", "In order to simplify interactions with the Harvest API\r\nAs a developer\r\nI want to" +
                     " be to call client service calls without knowing how to authenticate.\r\nI want to" +
-                    " be to call client service calls without knowing the endpoint urls required.", GenerationTargetLanguage.CSharp, ((string[])(null)));
+                    " be to call client service calls without knowing the endpoint URL\'s required.", GenerationTargetLanguage.CSharp, ((string[])(null)));
             testRunner.OnFeatureStart(featureInfo);
         }
         
@@ -105,11 +105,11 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
-        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Toggle a clients state")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Toggle a client’s state")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Client Service Requests")]
-        public virtual void ToggleAClientsState()
+        public virtual void ToggleAClientSState()
         {
-            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Toggle a clients state", new string[] {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Toggle a client’s state", new string[] {
                         "TestClientRecord"});
 #line 26
 this.ScenarioSetup(scenarioInfo);

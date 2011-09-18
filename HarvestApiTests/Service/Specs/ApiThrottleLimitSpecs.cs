@@ -40,7 +40,7 @@ namespace HarvestApiTests.Service.Specs
         [Then(@"a wait for the throttle to clear should of happened")]
         public void ThenAWaitForTheThrottleToClearShouldOfHappened()
         {
-            Assert.IsTrue(Wait > 0);
+            Assert.IsTrue(Wait > 0,"No Wait appeared to of happened, incrementing the tests times number may help this test pass");
         }
 
     }

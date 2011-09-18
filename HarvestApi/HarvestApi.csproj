@@ -42,7 +42,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service\Exception\HavestApiException.cs" />
+    <Compile Include="Service\Exception\HarvestApiException.cs" />
     <Compile Include="Service\HarvestService.cs" />
     <Compile Include="Service\IHarvestService.cs" />
     <Compile Include="Service\Request\AbstractService.cs" />
