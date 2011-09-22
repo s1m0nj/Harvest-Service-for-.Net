@@ -80,7 +80,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 15
 this.ScenarioSetup(scenarioInfo);
 #line 16
- testRunner.Then("the client should contain clientID");
+ testRunner.Then("the client should contain \"//client[id=\'[TESTCLIENTID]\']\"");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
@@ -105,19 +105,86 @@ this.ScenarioSetup(scenarioInfo);
         }
         
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Get All Clients Updated Since ID")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Client Service Requests")]
+        public virtual void GetAllClientsUpdatedSinceID()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get All Clients Updated Since ID", new string[] {
+                        "TestClientRecord"});
+#line 26
+this.ScenarioSetup(scenarioInfo);
+#line 27
+ testRunner.When("I call \"GetClients(updatedSinceUTC)\"");
+#line 28
+ testRunner.Then("the result should contain \"//client/name[contains(.,\'Test\')]\"");
+#line hidden
+            TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
+                        "Xpath"});
+            table1.AddRow(new string[] {
+                        "//client/name[contains(.,\'Test\')]"});
+            table1.AddRow(new string[] {
+                        "//client"});
+#line 29
+ testRunner.Then("the result should be equal", ((string)(null)), table1);
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Get specific client")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Client Service Requests")]
+        public virtual void GetSpecificClient()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get specific client", new string[] {
+                        "TestClientRecord"});
+#line 35
+this.ScenarioSetup(scenarioInfo);
+#line 36
+ testRunner.When("I call \"GetClient(clientID)\"");
+#line 37
+ testRunner.Then("the result should contain \"/client[id=\'[TESTCLIENTID]\']\"");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Update a client")]
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Client Service Requests")]
+        public virtual void UpdateAClient()
+        {
+            TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Update a client", new string[] {
+                        "TestClientRecord"});
+#line 40
+this.ScenarioSetup(scenarioInfo);
+#line hidden
+            TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
+                        "xml"});
+            table2.AddRow(new string[] {
+                        "<client><name>Delete Me, Automated Test, Updated</name></client>"});
+#line 41
+ testRunner.When("I call \"UpdateClient(clientID,xml)\"", ((string)(null)), table2);
+#line 44
+ testRunner.And("I call \"GetClient(clientID)\"");
+#line 45
+ testRunner.Then("the result should contain \"/client[name=\'Delete Me, Automated Test, Updated\']\"");
+#line hidden
+            testRunner.CollectScenarioErrors();
+        }
+        
+        [Microsoft.VisualStudio.TestTools.UnitTesting.TestMethodAttribute()]
         [Microsoft.VisualStudio.TestTools.UnitTesting.DescriptionAttribute("Toggle a client’s state")]
         [Microsoft.VisualStudio.TestTools.UnitTesting.TestPropertyAttribute("FeatureTitle", "Client Service Requests")]
         public virtual void ToggleAClientSState()
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Toggle a client’s state", new string[] {
                         "TestClientRecord"});
-#line 26
+#line 50
 this.ScenarioSetup(scenarioInfo);
-#line 27
+#line 51
  testRunner.When("I call \"ToggleClientState(clientID)\"");
-#line 28
+#line 52
  testRunner.And("I call \"GetClient(clientID)\"");
-#line 29
+#line 53
  testRunner.Then("the result should contain \"/client[active=\'false\']\"");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -130,15 +197,15 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Toggle a clients state to inactive and back again", new string[] {
                         "TestClientRecord"});
-#line 32
+#line 56
 this.ScenarioSetup(scenarioInfo);
-#line 33
+#line 57
  testRunner.When("I call \"ToggleClientState(clientID)\"");
-#line 34
+#line 58
  testRunner.And("I call \"ToggleClientState(clientID)\"");
-#line 35
+#line 59
  testRunner.And("I call \"GetClient(clientID)\"");
-#line 36
+#line 60
  testRunner.Then("the result should contain \"/client[active=\'true\']\"");
 #line hidden
             testRunner.CollectScenarioErrors();

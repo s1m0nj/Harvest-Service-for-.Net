@@ -80,7 +80,7 @@ this.ScenarioSetup(scenarioInfo);
 #line 15
 this.ScenarioSetup(scenarioInfo);
 #line 16
- testRunner.Then("the project should contain projectID");
+ testRunner.Then("the project should contain \"//project[id=\'[TESTPROJECTID]\']\"");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
@@ -111,11 +111,11 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get All Projects Updated Since ID", new string[] {
                         "TestProjectRecord"});
-#line 27
-this.ScenarioSetup(scenarioInfo);
-#line 28
- testRunner.When("I call \"GetProjects(updatedSinceUTC)\"");
 #line 29
+this.ScenarioSetup(scenarioInfo);
+#line 30
+ testRunner.When("I call \"GetProjects(updatedSinceUTC)\"");
+#line 31
  testRunner.Then("the result should contain \"//project/name[contains(.,\'Test\')]\"");
 #line hidden
             TechTalk.SpecFlow.Table table1 = new TechTalk.SpecFlow.Table(new string[] {
@@ -124,7 +124,7 @@ this.ScenarioSetup(scenarioInfo);
                         "//project/name[contains(.,\'Test\')]"});
             table1.AddRow(new string[] {
                         "//project"});
-#line 30
+#line 32
  testRunner.And("the result should be equal", ((string)(null)), table1);
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -137,12 +137,12 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get All Projects By Client ID", new string[] {
                         "TestProjectRecord"});
-#line 36
-this.ScenarioSetup(scenarioInfo);
-#line 37
- testRunner.When("I call \"GetProjects(clientID)\"");
 #line 38
- testRunner.Then("the result must contain projectID");
+this.ScenarioSetup(scenarioInfo);
+#line 39
+ testRunner.When("I call \"GetProjects(clientID)\"");
+#line 40
+ testRunner.Then("the result should contain \"//project[client-id=\'[TESTCLIENTID]\']\"");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
@@ -154,12 +154,12 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Get specific project", new string[] {
                         "TestProjectRecord"});
-#line 41
-this.ScenarioSetup(scenarioInfo);
-#line 42
- testRunner.When("I call \"GetProject(projectID)\"");
 #line 43
- testRunner.Then("the result should contain clientID");
+this.ScenarioSetup(scenarioInfo);
+#line 44
+ testRunner.When("I call \"GetProject(projectID)\"");
+#line 45
+ testRunner.Then("the result should contain \"/project[id=\'[TESTPROJECTID]\']\"");
 #line hidden
             testRunner.CollectScenarioErrors();
         }
@@ -171,7 +171,7 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Update a project", new string[] {
                         "TestProjectRecord"});
-#line 46
+#line 48
 this.ScenarioSetup(scenarioInfo);
 #line hidden
             TechTalk.SpecFlow.Table table2 = new TechTalk.SpecFlow.Table(new string[] {
@@ -179,11 +179,11 @@ this.ScenarioSetup(scenarioInfo);
             table2.AddRow(new string[] {
                         "<project><name>Delete Me, Automated Test, Updated</name><client-id>[TESTCLIENTID]" +
                             "</client-id></project>"});
-#line 47
+#line 49
  testRunner.When("I call \"UpdateProject(projectID,xml)\"", ((string)(null)), table2);
-#line 50
+#line 52
  testRunner.And("I call \"GetProject(projectID)\"");
-#line 51
+#line 53
  testRunner.Then("the result should contain \"/project[name=\'Delete Me, Automated Test, Updated\']\"");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -196,13 +196,13 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Toggle a projects state", new string[] {
                         "TestProjectRecord"});
-#line 54
-this.ScenarioSetup(scenarioInfo);
-#line 55
- testRunner.When("I call \"ToggleProjectState(projectID)\"");
 #line 56
- testRunner.And("I call \"GetProject(projectID)\"");
+this.ScenarioSetup(scenarioInfo);
 #line 57
+ testRunner.When("I call \"ToggleProjectState(projectID)\"");
+#line 58
+ testRunner.And("I call \"GetProject(projectID)\"");
+#line 59
  testRunner.Then("the result should contain \"/project[active=\'false\']\"");
 #line hidden
             testRunner.CollectScenarioErrors();
@@ -215,15 +215,15 @@ this.ScenarioSetup(scenarioInfo);
         {
             TechTalk.SpecFlow.ScenarioInfo scenarioInfo = new TechTalk.SpecFlow.ScenarioInfo("Toggle a projects state to inactive and back again", new string[] {
                         "TestProjectRecord"});
-#line 60
-this.ScenarioSetup(scenarioInfo);
-#line 61
- testRunner.When("I call \"ToggleProjectState(projectID)\"");
 #line 62
- testRunner.And("I call \"ToggleProjectState(projectID)\"");
+this.ScenarioSetup(scenarioInfo);
 #line 63
- testRunner.And("I call \"GetProject(projectID)\"");
+ testRunner.When("I call \"ToggleProjectState(projectID)\"");
 #line 64
+ testRunner.And("I call \"ToggleProjectState(projectID)\"");
+#line 65
+ testRunner.And("I call \"GetProject(projectID)\"");
+#line 66
  testRunner.Then("the result should contain \"/project[active=\'true\']\"");
 #line hidden
             testRunner.CollectScenarioErrors();

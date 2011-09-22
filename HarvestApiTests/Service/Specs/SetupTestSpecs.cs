@@ -23,7 +23,7 @@ namespace HarvestApiTests.Service.Specs
             //newClient.name <<= TestNamePrefix + StartTimeUniqueIdentifier;
             //XElement clientElement = newClient > FormatType.Xml;
             //string newClientXml = clientElement.ToString();
-
+            StartTimeUniqueIdentifier = DateTime.UtcNow;
             string newClientXml = new XElement("client",
                                                new XElement("name", TestNamePrefix + StartTimeUniqueIdentifier)
                 ).ToString();
@@ -109,7 +109,7 @@ namespace HarvestApiTests.Service.Specs
         private static void DeleteTestProjects()
         {
             string projects = SharedVariables.HarvestService.GetProjects();
-            XDocument document = XDocument.Parse(projects);
+                XDocument document = XDocument.Parse(projects);
 
             var testProjects = (from p in document.Descendants("project")
                            where p.Element("name").Value.StartsWith(TestNamePrefix)

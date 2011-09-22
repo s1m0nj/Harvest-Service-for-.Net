@@ -14,13 +14,15 @@ namespace HarvestApi.Service
         string UpdateProject(int projectID, string xml);
         string ToggleProjectState(int projectID);
         string DeleteProject(int projectID);
+        
         string GetClients();
-        //string GetClients(DateTime updatedSinceUTC);
+        string GetClients(DateTime updatedSinceUTC);
         string GetClient(int clientID);
         string CreateClient(string xml);
-        //string UpdateClient(int clientID, string xml);
+        string UpdateClient(int clientID, string xml);
         string ToggleClientState(int clientID);
         string DeleteClient(int clientID);
+
         //string GetContacts();
         //string GetContacts(DateTime updatedSinceUTC);
         //string GetContacts(int clientID);

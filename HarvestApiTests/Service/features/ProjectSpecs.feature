@@ -13,7 +13,7 @@ Scenario: Get All Projects
 #This is a test records dependency used in setup
 @TestProjectRecord 
 Scenario: Create a project
-	Then the project should contain projectID
+	Then the project should contain "//project[id='[TESTPROJECTID]']"		
 
 #This is a test records dependency used in tear down
 @TestProjectRecord
@@ -23,6 +23,8 @@ Scenario: Delete a project
 	Then the result should not contain "/projects"
 
 
+
+#This may fail if your systems clock is wrong
 @TestProjectRecord
 Scenario: Get All Projects Updated Since ID
 	When I call "GetProjects(updatedSinceUTC)" 
@@ -35,13 +37,13 @@ Scenario: Get All Projects Updated Since ID
 @TestProjectRecord
 Scenario: Get All Projects By Client ID
 	When I call "GetProjects(clientID)"
-	Then the result must contain projectID
+	Then the result should contain "//project[client-id='[TESTCLIENTID]']"
 
 @TestProjectRecord
 Scenario: Get specific project
 	When I call "GetProject(projectID)"
-	Then the result should contain clientID
-	
+	Then the result should contain "/project[id='[TESTPROJECTID]']"	
+
 @TestProjectRecord	
 Scenario: Update a project
 	When I call "UpdateProject(projectID,xml)" 

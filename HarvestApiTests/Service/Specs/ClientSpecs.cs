@@ -1,11 +1,13 @@
-﻿using System.Net;
+﻿using System;
+using System.Linq;
+using System.Net;
 using HarvestApi.Service.Exception;
 using HarvestApiTests.Service.Specs;
 using TechTalk.SpecFlow;
 
 namespace HarvestApiTests.Service.features
 {
-     [Binding]
+    [Binding]
     internal class ClientSpecs : BaseSpec
     {
         [When(@"I call ""GetClients\(\)""")]
@@ -40,15 +42,44 @@ namespace HarvestApiTests.Service.features
         public void ThenTheClientShouldContainClientID()
         {
             new CommonAssertionSpecs().ThenTheResultShouldContain("client",
-                                                          "//client[id=" + SharedVariables.TestClientID + "]");
-    
+                                                                  "//client[id=" + SharedVariables.TestClientID + "]");
         }
+
         [When(@"I call ""ToggleClientState\(clientID\)""")]
         public void WhenICallToggleClientStateClientID()
         {
             StoreResult(SharedVariables.HarvestService.ToggleClientState(SharedVariables.TestClientID));
         }
 
+        [When(@"I call ""GetClients\(clientID\)""")]
+        public void WhenICallGetClientsClientID()
+        {
+            StoreResult(SharedVariables.HarvestService.GetClient(SharedVariables.TestClientID));
+        }
+
+        [When(@"I call ""GetClients\(updatedSinceUTC\)""")]
+        public void WhenICallGetClientsUpdatedSinceUTC()
+        {
+            DateTime time = SetupTestSpecs.StartTimeUniqueIdentifier.AddMinutes(-5);
+            StoreResult(SharedVariables.HarvestService.GetClients(time));
+        }
+
+        //DateTime time = SetupTestSpecs.StartTimeUniqueIdentifier.AddMinutes(-5);
+        [When(@"I call ""UpdateClient\(clientID,xml\)""")]
+        public void WhenICallUpdateClientClientIDXml(Table parameters)
+        {
+
+            if (parameters == null) throw new ArgumentException("Parameters table missing");
+            if (parameters.Rows.Count < 1) throw new ArgumentException("Parameters data missing, no rows found.");
+            if (parameters.Header.Count() < 1)
+                throw new ArgumentException("Parameters data column missing, one column expected.");
+
+            string xml = parameters.Rows[0][0];
+
+            xml = ParseTags(xml);
+
+            StoreResult(SharedVariables.HarvestService.UpdateClient(SharedVariables.TestClientID, xml));
+        }
 
 
     }

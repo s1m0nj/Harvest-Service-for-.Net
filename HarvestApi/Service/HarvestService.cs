@@ -105,11 +105,11 @@ namespace HarvestApi.Service
             return PerformRequest(request);
         }
 
-        //public string GetClients(DateTime updatedSinceUTC)
-        //{
-        //    var request = new GetService(HarvestConnection, "clients?updated_since=", updatedSinceUTC);
-        //    return PerformRequest(request);
-        //}
+        public string GetClients(DateTime updatedSinceUTC)
+        {
+            var request = new GetService(HarvestConnection, "clients?updated_since={0}", updatedSinceUTC);
+            return PerformRequest(request);
+        }
 
         public string GetClient(int clientID)
         {
@@ -123,11 +123,11 @@ namespace HarvestApi.Service
             return PerformRequest(request,xml);
         }
 
-        //public string UpdateClient(int clientID, string xml)
-        //{
-        //    var request = new PutService(HarvestConnection, "clients/{0}", clientID);
-        //    return PerformRequest(request,xml);
-        //}
+        public string UpdateClient(int clientID, string xml)
+        {
+            var request = new PutService(HarvestConnection, "clients/{0}", clientID);
+            return PerformRequest(request, xml);
+        }
 
         public string ToggleClientState(int clientID)
         {

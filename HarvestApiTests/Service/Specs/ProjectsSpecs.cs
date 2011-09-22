@@ -91,28 +91,28 @@ namespace HarvestApiTests.Service.Specs
 
         #region Project specific assertions
 
-        [Then(@"the result must contain projectID")]
-        public void ThenTheResultMustContainProjectID()
-        {
-            new CommonAssertionSpecs().ThenTheResultShouldContain("result",
-                                                                  "//project[id=" + SharedVariables.TestProjectID + "]");
-        }
+        //[Then(@"the result must contain projectID")]
+        //public void ThenTheResultMustContainProjectID()
+        //{
+        //    new CommonAssertionSpecs().ThenTheResultShouldContain("result",
+        //                                                          "//project[id=" + SharedVariables.TestProjectID + "]");
+        //}
 
-        [Then(@"the project must contain projectID")]
-        [Then(@"the project should contain projectID")]
-        public void ThenTheProjectMustContainProjectID()
-        {
-            new CommonAssertionSpecs().ThenTheResultShouldContain("project",
-                                                                  "//project[id=" + SharedVariables.TestProjectID + "]");
-        }
+        //[Then(@"the project must contain projectID")]
+        //[Then(@"the project should contain projectID")]
+        //public void ThenTheProjectMustContainProjectID()
+        //{
+        //    new CommonAssertionSpecs().ThenTheResultShouldContain("project",
+        //                                                          "//project[id=" + SharedVariables.TestProjectID + "]");
+        //}
 
-        [Then(@"the result should contain clientID")]
-        public void ThenTheResultShouldContainClientID()
-        {
-            new CommonAssertionSpecs().ThenTheResultShouldContain("result",
-                                                                  "//project[client-id=" + SharedVariables.TestClientID +
-                                                                  "]");
-        }
+        //[Then(@"the result should contain clientID")]
+        //public void ThenTheResultShouldContainClientID()
+        //{
+        //    new CommonAssertionSpecs().ThenTheResultShouldContain("result",
+        //                                                          "//project[client-id=" + SharedVariables.TestClientID +
+        //                                                          "]");
+        //}
 
         #endregion Project specific assertions
 
