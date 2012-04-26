@@ -7,13 +7,15 @@ using TechTalk.SpecFlow;
 namespace HarvestApiTests.Service.Specs
 {
     [Binding]
-    public class SetupTestSpecs
+    public class TestDataSpecs
     {
                                                           
         internal static readonly string TestNamePrefix = "Delete Me, Automated Test,";
                                         //WARNING: This identifier is used is bulk delete, so don't name it anything like real data
 
         public static DateTime StartTimeUniqueIdentifier = DateTime.UtcNow;
+        private static int TestClientID;
+        private static XElement TestClient;
 
         [BeforeScenario("TestClientRecord")]
         private static XElement CreateTestClient()
@@ -35,16 +37,16 @@ namespace HarvestApiTests.Service.Specs
                                    where p.Element("name").Value.EndsWith(StartTimeUniqueIdentifier.ToString())
                                    select p).FirstOrDefault();
 
-            SharedVariables.TestClient = testClient;
-            SharedVariables.TestClientID = int.Parse(testClient.Element("id").Value);
+            TestClient = testClient;
+            TestClientID = int.Parse(testClient.Element("id").Value);
 
             return testClient;
         }
 
         //private static void DeleteTestClient()
         //{
-        //    if (SharedVariables.TestClientID == 0) return;
-        //    SharedVariables.HarvestService.DeleteClient(SharedVariables.TestClientID);
+        //    if (TestClientID == 0) return;
+        //    SharedVariables.HarvestService.DeleteClient(TestClientID);
         //}
 
         [AfterScenario("TestClientRecord")]
@@ -73,8 +75,8 @@ namespace HarvestApiTests.Service.Specs
                         lastException = e;
                     }
                 }
-                SharedVariables.TestClient = null;
-                SharedVariables.TestClientID = 0;
+                TestClient = null;
+                TestClientID = 0;
                 if (lastException != null) throw lastException;
 
             }
@@ -86,11 +88,11 @@ namespace HarvestApiTests.Service.Specs
 
         private static XElement CreateTestProject()
         {
-            if (SharedVariables.TestClientID == 0) CreateTestClient();
+            if (TestClientID == 0) CreateTestClient();
 
             string newProjectXml = new XElement("project",
                                                 new XElement("name", TestNamePrefix + StartTimeUniqueIdentifier),
-                                                new XElement("client-id", SharedVariables.TestClientID)
+                                                new XElement("client-id", TestClientID)
                 ).ToString();
             SharedVariables.HarvestService.CreateProject(newProjectXml);
             string projects = SharedVariables.HarvestService.GetProjects();

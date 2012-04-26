@@ -23,7 +23,7 @@ namespace HarvestApi.Service
         string ToggleClientState(int clientID);
         string DeleteClient(int clientID);
 
-        //string GetContacts();
+        string GetContacts();
         //string GetContacts(DateTime updatedSinceUTC);
         //string GetContacts(int clientID);
         //string GetContacts(int clientID, DateTime updatedSinceUTC);
@@ -31,5 +31,7 @@ namespace HarvestApi.Service
         //string CreateContact(string xml);
         //string UpdateContact(int contactID, string xml);
         //string DeleteContact(int contactID);
+
+        string GetInvoices();
     }
 }

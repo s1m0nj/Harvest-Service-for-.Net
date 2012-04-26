@@ -8,7 +8,7 @@
 #This is a test records dependency used in setup
 Scenario: Get All Projects
 	When I call "GetProjects()"
-	Then the result should contain "/projects"
+	Then the xml result should contain "/projects"
 
 #This is a test records dependency used in setup
 @TestProjectRecord 
@@ -20,7 +20,7 @@ Scenario: Create a project
 Scenario: Delete a project
 	When I call "DeleteProject(projectID)"
 	And I call "GetProject(projectID)"
-	Then the result should not contain "/projects"
+	Then the xml result should not contain "/projects"
 
 
 
@@ -28,8 +28,8 @@ Scenario: Delete a project
 @TestProjectRecord
 Scenario: Get All Projects Updated Since ID
 	When I call "GetProjects(updatedSinceUTC)" 
-	Then the result should contain "//project/name[contains(.,'Test')]"
-	And  the result should be equal
+	Then the xml result should contain "//project/name[contains(.,'Test')]"
+	And  the xml result should be equal
 	| Xpath								| 
 	| //project/name[contains(.,'Test')] |
 	| //project							|
@@ -37,12 +37,12 @@ Scenario: Get All Projects Updated Since ID
 @TestProjectRecord
 Scenario: Get All Projects By Client ID
 	When I call "GetProjects(clientID)"
-	Then the result should contain "//project[client-id='[TESTCLIENTID]']"
+	Then the xml result should contain "//project[client-id='[TESTCLIENTID]']"
 
 @TestProjectRecord
 Scenario: Get specific project
 	When I call "GetProject(projectID)"
-	Then the result should contain "/project[id='[TESTPROJECTID]']"	
+	Then the xml result should contain "/project[id='[TESTPROJECTID]']"	
 
 @TestProjectRecord	
 Scenario: Update a project
@@ -50,17 +50,17 @@ Scenario: Update a project
 	| xml |
 	| <project><name>Delete Me, Automated Test, Updated</name><client-id>[TESTCLIENTID]</client-id></project>|
 	And  I call "GetProject(projectID)"
-	Then the result should contain "/project[name='Delete Me, Automated Test, Updated']"
+	Then the xml result should contain "/project[name='Delete Me, Automated Test, Updated']"
 
 @TestProjectRecord	
 Scenario: Toggle a projects state
 	When I call "ToggleProjectState(projectID)"
 	And  I call "GetProject(projectID)"
-	Then the result should contain "/project[active='false']"
+	Then the xml result should contain "/project[active='false']"
 
 @TestProjectRecord	
 Scenario: Toggle a projects state to inactive and back again
 	When I call "ToggleProjectState(projectID)"
 	And  I call "ToggleProjectState(projectID)"
 	And  I call "GetProject(projectID)"
-	Then the result should contain "/project[active='true']"
+	Then the xml result should contain "/project[active='true']"

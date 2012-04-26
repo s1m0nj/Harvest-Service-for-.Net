@@ -20,15 +20,15 @@ namespace HarvestApiTests.Service.Specs
 
         private string getXmlAsString(string resultVar)
         {
-            if (resultVar == "project")
+            if (resultVar == "project xml")
             {
                 return SharedVariables.TestProject.ToString();
             }
-            if (resultVar == "client")
+            if (resultVar == "client xml")
             {
                 return SharedVariables.TestClient.ToString();
             }
-            if (resultVar == "result")
+            if (resultVar == "xml result")
             {
                 return SharedVariables.Result.ToString();
             }
@@ -81,20 +81,20 @@ namespace HarvestApiTests.Service.Specs
 
         int CountXpath(string resultVar, string xPath)
         {
-            if (resultVar == "project")
+            if (resultVar == "project xml")
             {
                 return SharedVariables.TestProject.XPathCountElements(ParseTags(xPath));
             }
-            if (resultVar == "client")
+            if (resultVar == "client xml")
             {
                 return SharedVariables.TestClient.XPathCountElements(ParseTags(xPath));
             }
-            if (resultVar == "result")
+            if (resultVar == "xml result")
             {
                 return SharedVariables.Result.Elements().Count() == 0 ? 0 : SharedVariables.Result.XPathCountElements(ParseTags(xPath));
             }
             throw new NotImplementedException(resultVar);
-            
         }
+
     }
 }

@@ -21,7 +21,7 @@ namespace HarvestApi.Service
         }
 
         /// <summary>
-        /// Wrapper to set HavestRequestForcedWaitForApiThrotterling if it occured
+        /// Wrapper to set HavestRequestForcedWaitForApiThrotterling if it occurred
         /// </summary>
         /// <param name="commmand"></param>
         /// <param name="xmlParameter"></param>
@@ -141,10 +141,27 @@ namespace HarvestApi.Service
             return PerformRequest(request);
         }
 
-
         #endregion Client
 
+        #region Contact
+        
+        public string GetContacts()
+        {
+            var request = new GetService(HarvestConnection, "contacts");
+            return PerformRequest(request);
+        }
 
+        #endregion Contact
+
+        #region Invoice
+
+        public string GetInvoices()
+        {
+            var request = new GetService(HarvestConnection, "invoices");
+            return PerformRequest(request);
+        }
+
+        #endregion Invoice
     }
 
 }

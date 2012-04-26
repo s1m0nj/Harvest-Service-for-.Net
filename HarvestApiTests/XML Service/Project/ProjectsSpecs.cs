@@ -24,7 +24,7 @@ namespace HarvestApiTests.Service.Specs
         [When(@"I call ""GetProjects\(updatedSinceUTC\)""")]
         public void WhenICallGetProjectsUpdatedSinceUTC()
         {
-            DateTime time = SetupTestSpecs.StartTimeUniqueIdentifier.AddMinutes(-5);
+            DateTime time = TestDataSpecs.StartTimeUniqueIdentifier.AddMinutes(-5);
             StoreResult(SharedVariables.HarvestService.GetProjects(time));
         }
 
@@ -66,8 +66,8 @@ namespace HarvestApiTests.Service.Specs
         {
             string newProjectXml = new XElement("project",
                                                 new XElement("name",
-                                                             SetupTestSpecs.TestNamePrefix + " Create Test," +
-                                                             SetupTestSpecs.StartTimeUniqueIdentifier),
+                                                             TestDataSpecs.TestNamePrefix + " Create Test," +
+                                                             TestDataSpecs.StartTimeUniqueIdentifier),
                                                 new XElement("client-id", SharedVariables.TestClientID)).ToString();
             StoreResult(SharedVariables.HarvestService.CreateProject(newProjectXml));
         }
@@ -88,33 +88,6 @@ namespace HarvestApiTests.Service.Specs
         }
 
         #endregion Project specific When
-
-        #region Project specific assertions
-
-        //[Then(@"the result must contain projectID")]
-        //public void ThenTheResultMustContainProjectID()
-        //{
-        //    new CommonAssertionSpecs().ThenTheResultShouldContain("result",
-        //                                                          "//project[id=" + SharedVariables.TestProjectID + "]");
-        //}
-
-        //[Then(@"the project must contain projectID")]
-        //[Then(@"the project should contain projectID")]
-        //public void ThenTheProjectMustContainProjectID()
-        //{
-        //    new CommonAssertionSpecs().ThenTheResultShouldContain("project",
-        //                                                          "//project[id=" + SharedVariables.TestProjectID + "]");
-        //}
-
-        //[Then(@"the result should contain clientID")]
-        //public void ThenTheResultShouldContainClientID()
-        //{
-        //    new CommonAssertionSpecs().ThenTheResultShouldContain("result",
-        //                                                          "//project[client-id=" + SharedVariables.TestClientID +
-        //                                                          "]");
-        //}
-
-        #endregion Project specific assertions
 
     }
 }

@@ -46,31 +46,48 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Extentions\XNode.cs" />
-    <Compile Include="Service\features\ApiThrottleLimit.feature.cs">
+    <Compile Include="Poco Service\Invoices\InvoiceSpecs.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InvoiceSpecs.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Poco Service\Projects\ProjectSpecs.feature.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProjectSpecs.feature</DependentUpon>
+    </Compile>
+    <Compile Include="Poco Service\Shared\ServiceCaller.cs" />
+    <Compile Include="Poco Service\Shared\SharedVariables.cs" />
+    <Compile Include="Shared\SharedVariables.cs" />
+    <Compile Include="XML Service\ApiThrottleLimit\ApiThrottleLimit.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ApiThrottleLimit.feature</DependentUpon>
     </Compile>
-    <Compile Include="Service\Specs\BaseSpec.cs" />
-    <Compile Include="Service\Specs\ApiThrottleLimitSpecs.cs" />
-    <Compile Include="Service\Specs\ClientSpecs.cs" />
-    <Compile Include="Service\features\ClientSpecs1.feature.cs">
+    <Compile Include="XML Service\Shared\BaseSpec.cs" />
+    <Compile Include="XML Service\ApiThrottleLimit\ApiThrottleLimitSpecs.cs" />
+    <Compile Include="XML Service\Client\ClientSpecs.cs" />
+    <Compile Include="XML Service\Client\ClientSpecs1.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ClientSpecs.feature</DependentUpon>
     </Compile>
-    <Compile Include="Service\Specs\SetupTestSpecs.cs" />
-    <Compile Include="Service\Specs\CommonAssertionSpecs.cs" />
-    <Compile Include="Service\Specs\ProjectsSpecs.cs" />
-    <Compile Include="Service\features\ProjectSpecs.feature.cs">
+    <Compile Include="Shared\TestDataSpecs.cs" />
+    <Compile Include="Shared\CommonAssertionSpecs.cs" />
+    <Compile Include="XML Service\Project\ProjectsSpecs.cs" />
+    <Compile Include="XML Service\Project\ProjectSpecs.feature.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>ProjectSpecs.feature</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Service\Specs\SharedVariables.cs" />
+    <Compile Include="XML Service\Shared\SharedVariables.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\HarvestApiPoco\HarvestApiPoco.csproj">
+      <Project>{17108ECE-D90E-4A9F-A17A-21DF645A413E}</Project>
+      <Name>HarvestApiPoco</Name>
+    </ProjectReference>
     <ProjectReference Include="..\HarvestApi\HarvestApi.csproj">
       <Project>{1B984350-FBC1-495E-9ACF-93CC8316235F}</Project>
       <Name>HarvestApi</Name>
@@ -80,15 +97,23 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service\features\ApiThrottleLimit.feature">
+    <None Include="Poco Service\Invoices\InvoiceSpecs.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>InvoiceSpecs.feature.cs</LastGenOutput>
+    </None>
+    <None Include="Poco Service\Projects\ProjectSpecs.feature">
+      <Generator>SpecFlowSingleFileGenerator</Generator>
+      <LastGenOutput>ProjectSpecs.feature.cs</LastGenOutput>
+    </None>
+    <None Include="XML Service\ApiThrottleLimit\ApiThrottleLimit.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ApiThrottleLimit.feature.cs</LastGenOutput>
     </None>
-    <None Include="Service\features\ClientSpecs.feature">
+    <None Include="XML Service\Client\ClientSpecs.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ClientSpecs1.feature.cs</LastGenOutput>
     </None>
-    <None Include="Service\features\ProjectSpecs.feature">
+    <None Include="XML Service\Project\ProjectSpecs.feature">
       <Generator>SpecFlowSingleFileGenerator</Generator>
       <LastGenOutput>ProjectSpecs.feature.cs</LastGenOutput>
     </None>

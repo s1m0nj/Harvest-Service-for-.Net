@@ -8,6 +8,8 @@ This project is intended to simplify using the Harvest API in your .Net project 
 
 This version currently covers all "Project" service requests and "client" service requests, other requests maybe added in the future but you can extend IHarvestService.cs and IHarvestService.cs to handle more of the API.
 
+In addition in the source code there's also a POCO project that uses this project that is very easy to extend if you don't want to deal with any XML.
+
 @_Simon_Jackson[http://www.simonjackson.info] http://www.prosperity247.com
 
 http://i55.tinypic.com/o9pw0p.jpg
@@ -48,7 +50,6 @@ In Visual Studio's Solution Explorer, Right Click HarvestApiSpec and select "Run
 
 The following is a list of future tasks for this project
 
-* Mono Support
 * Implement more of the API
 
 == What is Harvest[http://www.getharvest.com]? 

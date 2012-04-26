@@ -8,5 +8,7 @@ namespace System.Xml.XPath
         {
             return node == null ? 0 : node.XPathSelectElements(expression).Count();
         }
+
+        
     }
 }

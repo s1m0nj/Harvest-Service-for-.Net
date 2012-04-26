@@ -60,7 +60,7 @@ namespace HarvestApiTests.Service.features
         [When(@"I call ""GetClients\(updatedSinceUTC\)""")]
         public void WhenICallGetClientsUpdatedSinceUTC()
         {
-            DateTime time = SetupTestSpecs.StartTimeUniqueIdentifier.AddMinutes(-5);
+            DateTime time = TestDataSpecs.StartTimeUniqueIdentifier.AddMinutes(-5);
             StoreResult(SharedVariables.HarvestService.GetClients(time));
         }
 
