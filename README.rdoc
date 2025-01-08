@@ -10,8 +10,6 @@ This version currently covers all "Project" service requests and "client" servic
 
 In addition in the source code there's also a POCO project that uses this project that is very easy to extend if you don't want to deal with any XML.
 
-@_Simon_Jackson[http://www.simonjackson.info] http://www.prosperity247.com
-
 http://i55.tinypic.com/o9pw0p.jpg
 
 == Source Code Prerequisites
